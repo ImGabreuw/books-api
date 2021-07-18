@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-func RunMigration(db *gorm.DB) {
+func RunMigrations(db *gorm.DB) {
 	err := db.AutoMigrate(model.Book{})
 
 	if err != nil {

@@ -1,21 +1,18 @@
 version: "3"
 
-volumes:
-  pgdata:
-
 services:
   postgres:
-    container_name: postgres_container
     image: postgres:13-alpine
+    container_name: postgres_container
     tty: true
     restart: always
     environment:
       - POSTGRES_PASSWORD=root
-      - POSTGRES_DATABASE=books
+      - POSTGRES_DB=books
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - .pgdata:/var/lib/postgresql/data
 
   pgadmin:
     image: dpage/pgadmin4

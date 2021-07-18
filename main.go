@@ -1,8 +1,13 @@
 package main
 
-import "books-api/server"
+import (
+	"books-api/database"
+	"books-api/server"
+)
 
 func main() {
+	database.StartDB()
+
 	s := server.NewServer()
 
 	s.Run()
