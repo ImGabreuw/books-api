@@ -1,0 +1,30 @@
+version: "3"
+
+volumes:
+  pgdata:
+
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres:13-alpine
+    tty: true
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DATABASE=books
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_container
+    tty: true
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@user.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - "9000:80"
+    depends_on:
+      - postgres
